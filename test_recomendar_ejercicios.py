@@ -12,9 +12,9 @@ def test_recomendar_ejercicios_basico(client):
     # Ejemplo de datos de solicitud JSON
     data = {
         "ejercicios": [
-            {"grupo_muscular": ["Pecho"]},
-            {"grupo_muscular": ["Piernas"]},
-            {"grupo_muscular": ["Espalda"]},
+            {"id": 1, "nombre": "Sentadillas", "imagen": "sentadillas.jpg", "video": "sentadillas.mp4", "grupo_muscular": ["Piernas"]},
+            {"id": 2, "nombre": "Press de banca", "imagen": "press_de_banca.jpg", "video": "press_de_banca.mp4", "grupo_muscular": ["Pecho"]},
+            {"id": 3, "nombre": "Dominadas", "imagen": "dominadas.jpg", "video": "dominadas.mp4", "grupo_muscular": ["Espalda", "Brazos"]}
         ]
     }
 

@@ -76,6 +76,14 @@ def recomendar_ejercicios():
     # Determinar los grupos musculares que faltan
     grupos_faltantes = [grupo for grupo in todos_los_grupos if grupo not in grupos_musculares_usuario]
 
+    recomendaciones = []
+
+    for ejercicio in ejercicios:
+        for grupo in grupos_faltantes:
+            if grupo in ejercicio["grupo_muscular"]:
+                recomendaciones.append(ejercicio)
+                break
+
     # Devolver los grupos musculares faltantes como respuesta
     return jsonify({"grupos_faltantes": grupos_faltantes})
 
