@@ -20,12 +20,19 @@ def realizar_prueba_con_logging():
     with app.test_client() as client:
         response = client.post('/recomendar', json=data)
 
-    # Convertir la respuesta JSON a un diccionario Python
-    data = json.loads(response.data)
-
-    # Obtener los grupos musculares faltantes e imprimirlos en el registro
-    grupos_faltantes = data["grupos_faltantes"]
-    logger.info("Grupos musculares faltantes: %s", grupos_faltantes)
+    # Verificar el código de estado de la response
+    if response.status_code == 200:
+        try:
+            # Convertir la response JSON a un diccionario
+            datos_response = response.get_json()
+            
+            # Obtener los nombres de los ejercicios recomendados y registrarlos
+            ejercicios_recomendados = [ejercicio["nombre"] for ejercicio in datos_response]
+            logger.info("Ejercicios recomendados: %s", ejercicios_recomendados)
+        except json.JSONDecodeError as e:
+            logger.error("Error al decodificar JSON: %s", e)
+    else:
+        logger.error("La solicitud no fue exitosa. Código de estado: %d", response.status_code)
 
 # Ejecutar la prueba con logging
 realizar_prueba_con_logging()

@@ -18,22 +18,21 @@ def test_recomendar_ejercicios_basico(client):
         ]
     }
 
-    # Realizar una solicitud POST a la ruta '/recomendar' con datos de prueba
+     # Envía una solicitud POST al endpoint '/recomendar'
     response = client.post('/recomendar', json=data)
 
-    # Verificar que la respuesta tiene un código de estado 200 (OK)
+    # Verifica que la respuesta tenga el código de estado esperado (200 para éxito)
     assert response.status_code == 200
 
-    # Convertir la respuesta JSON a un diccionario Python
-    data = json.loads(response.data)
+    # Verifica que la respuesta sea del tipo JSON
+    assert response.content_type == 'application/json'
 
-    # Verificar que la respuesta contiene la clave "grupos_faltantes"
-    assert "grupos_faltantes" in data
+    # Verifica que la respuesta contenga los ejercicios recomendados
+    resp = response.get_json()
 
-    # Verificar que la lista de grupos musculares faltantes no esté vacía
-    assert len(data["grupos_faltantes"]) > 0
+    assert len(resp) == 7  #  En este caso
 
-
-    # Otras aserciones según lo necesario para la aplicación
-    # Verificar que los grupos musculares faltantes son los esperados
-    # assert set(data["grupos_faltantes"]) == {"Hombros", "Abdomen", ...}
+    # Verifica que los grupos musculares de los ejercicios recomendados sean exactamente "Abdomen" y "Hombros"
+    for ejercicio in resp:
+        assert "Abdomen" in ejercicio["grupo_muscular"] or "Hombros" in ejercicio["grupo_muscular"]
+    

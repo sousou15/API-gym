@@ -85,11 +85,11 @@ def recomendar_ejercicios():
                 break
 
     # Devolver los grupos musculares faltantes como respuesta
-    return jsonify({"grupos_faltantes": grupos_faltantes})
+    #return jsonify({"grupos_faltantes": grupos_faltantes})
 
 
 
-    #return jsonify(recomendaciones)
+    return jsonify(recomendaciones)
 
 if __name__ == '__main__':
     app.run(debug=True)
