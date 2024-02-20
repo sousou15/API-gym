@@ -34,6 +34,6 @@ def test_recomendar_ejercicios_basico(client):
     assert len(data["grupos_faltantes"]) > 0
 
 
-    # Otras aserciones según lo necesario para tu aplicación
-    # Por ejemplo, podrías verificar que los grupos musculares faltantes son los esperados
-    # assert set(data["grupos_faltantes"]) == {"Grupo1", "Grupo2", ...}
+    # Otras aserciones según lo necesario para la aplicación
+    # Verificar que los grupos musculares faltantes son los esperados
+    # assert set(data["grupos_faltantes"]) == {"Hombros", "Abdomen", ...}
