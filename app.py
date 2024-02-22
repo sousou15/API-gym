@@ -19,7 +19,6 @@ def es_admin():
 # Generación de token JWT para un usuario administrador
 @app.route('/login_admin', methods=['POST'])
 def login_admin():
-    # En un escenario real, deberías autenticar al usuario y verificar si es un administrador
     username = request.json.get('username')
     password = request.json.get('password')
 
